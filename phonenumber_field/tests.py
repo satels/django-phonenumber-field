@@ -150,10 +150,13 @@ class PhoneNumberFieldTestCase(TestCase):
         Perform aggregate tests for all db storage formats
         """
         old_format = getattr(settings, 'PHONENUMBER_DB_FORMAT', 'E164')
+        old_default_region = getattr(settings, 'PHONENUMBER_DEFAULT_REGION', None)
+        setattr(settings, 'PHONENUMBER_DEFAULT_REGION', 'DE')
         for frmt in PhoneNumber.format_map:
             setattr(settings, 'PHONENUMBER_DB_FORMAT', frmt)
             self._test_storage_formats()
         setattr(settings, 'PHONENUMBER_DB_FORMAT', old_format)
+        setattr(settings, 'PHONENUMBER_DEFAULT_REGION', old_default_region)
 
     def test_prep_value(self):
         """
