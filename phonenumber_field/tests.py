@@ -5,16 +5,15 @@ import phonenumbers
 from django.conf import settings
 from django.db import models
 from django.test.testcases import TestCase
-from phonenumbers import phonenumberutil
-
 from phonenumber_field.modelfields import PhoneNumberField
 from phonenumber_field.phonenumber import PhoneNumber, to_python
 from phonenumber_field.widgets import PhoneNumberInternationalFallbackWidget
-
+from phonenumbers import phonenumberutil
 
 ###############
 # Test Models #
 ###############
+
 
 class MandatoryPhoneNumber(models.Model):
     phone_number = PhoneNumberField()
@@ -111,8 +110,8 @@ class PhoneNumberFieldTestCase(TestCase):
         self.assertEqual(type(opt_phone.phone_number), PhoneNumber)
         self.assertEqual(opt_phone.phone_number.as_e164, self.test_number_1)
         opt_phone_db = OptionalPhoneNumber.objects.get(id=opt_phone.id)
-        self.assertEqual(type(opt_phone.phone_number), PhoneNumber)
-        self.assertEqual(opt_phone.phone_number.as_e164, self.test_number_1)
+        self.assertEqual(type(opt_phone_db.phone_number), PhoneNumber)
+        self.assertEqual(opt_phone_db.phone_number.as_e164, self.test_number_1)
 
     def test_can_assign_phonenumber(self):
         """

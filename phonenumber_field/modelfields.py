@@ -4,7 +4,6 @@ from django.conf import settings
 from django.core import validators
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-
 from phonenumber_field import formfields
 from phonenumber_field.phonenumber import PhoneNumber, to_python
 from phonenumber_field.validators import validate_international_phonenumber

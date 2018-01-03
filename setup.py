@@ -1,7 +1,8 @@
-from setuptools import setup, find_packages
+# -*- coding: utf-8 -*-
 import pkgutil
 
 from phonenumber_field import __version__
+from setuptools import find_packages, setup
 
 install_requires = ['django>=1.5', 'babel']
 if 'phonenumbers' not in [p[1] for p in pkgutil.iter_modules()]:
